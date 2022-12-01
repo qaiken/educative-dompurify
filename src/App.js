@@ -7,7 +7,7 @@ function App() {
   const [message, setMessage] = useState('');
 
   return (
-    <div>
+    <div className="App">
       <input onChange={(e) => setMessage(e.target.value)} />
       <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }} />
     </div>
