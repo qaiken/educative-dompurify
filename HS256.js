@@ -1,5 +1,6 @@
-// Signing (Sender)
 const jwt = require('jsonwebtoken');
+
+// Signing (Sender)
 const payload = { foo: 'bar' };
 const token = jwt.sign(payload, 'my-cool-secret'); // HS256 by default
 
