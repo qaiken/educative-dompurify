@@ -7,14 +7,20 @@ const knex = require('knex')({
 });
 
 async function createTables() {
-  return knex.schema
-    .createTableIfNotExists('students', function (table) {
-      table.increments();
-      table.string('name');
-    })
-    .then(function () {
-      return knex('students').insert([{ name: 'Robert' }]);
-    });
+  return knex.schema.hasTable('students').then((exists) => {
+    if (exists) {
+      return;
+    }
+
+    return knex.schema
+      .createTable('students', function (table) {
+        table.increments();
+        table.string('name');
+      })
+      .then(function () {
+        return knex('students').insert([{ name: 'Robert' }]);
+      });
+  });
 }
 
 async function queryStudents() {
